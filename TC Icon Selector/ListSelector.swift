@@ -9,36 +9,37 @@ import UIKit
 
 open class ListSelector: UIViewController {
     
-    let regularHeaderElementKind = "regular-header-element-kind"
+    private let regularHeaderElementKind = "regular-header-element-kind"
     
-    enum Section: String, CaseIterable {
+    private enum Section: String, CaseIterable {
         case main = "Alternate Icons"
     }
     
-    var collectionView: UICollectionView!
+    private var collectionView: UICollectionView!
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Icon>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Icon>!
     
-    public var icons = [Icon]()
-    
-    public func complete() {
-        configureHierarchy()
-        configureDataSource()
-        newSnap()
+    public var icons: [Icon] = [] {
+        didSet {
+            configureHierarchy()
+            configureDataSource()
+            newSnap()
+        }
     }
     
-    func newSnap() {
+    private func newSnap() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Icon>()
         snapshot.appendSections([.main])
         snapshot.appendItems(icons, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    func changeIcon(to iconName: String) {
+    private func changeIcon(to iconName: String) {
         guard UIApplication.shared.supportsAlternateIcons else {
+            print("App icon change not supported")
             return
         }
-        UIApplication.shared.setAlternateIconName(iconName, completionHandler: { (error) in
+        UIApplication.shared.setAlternateIconName(iconName, completionHandler: { error in
             if let error = error {
                 print("App icon failed to change due to \(error.localizedDescription)")
             } else {
@@ -51,7 +52,7 @@ open class ListSelector: UIViewController {
 
 // MARK: - CollectionView Delegate
 extension ListSelector: UICollectionViewDelegate {
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             let contentSize = layoutEnvironment.container.effectiveContentSize
@@ -73,7 +74,7 @@ extension ListSelector: UICollectionViewDelegate {
         return layout
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -84,7 +85,7 @@ extension ListSelector: UICollectionViewDelegate {
 
 // MARK: - CollectionView Datasource
 extension ListSelector {
-    func configureDataSource() {
+    private func configureDataSource() {
         collectionView.register(ListIconCell.self, forCellWithReuseIdentifier: ListIconCell.reuseIdentifier)
         collectionView.register(IconHeaderView.self, forSupplementaryViewOfKind: regularHeaderElementKind, withReuseIdentifier: IconHeaderView.reuseIdentifier)
         dataSource = UICollectionViewDiffableDataSource<Section, Icon>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, icon) -> UICollectionViewCell? in
@@ -102,7 +103,7 @@ extension ListSelector {
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        changeIcon(to: (dataSource.itemIdentifier(for: indexPath)?.name)!)
+        changeIcon(to: dataSource.itemIdentifier(for: indexPath)!.image)
     }
 }
 
