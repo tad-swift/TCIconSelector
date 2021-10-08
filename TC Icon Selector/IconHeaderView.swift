@@ -24,7 +24,7 @@ class IconHeaderView: UICollectionReusableView {
     func configure() {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .rounded(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         addSubview(label)
         

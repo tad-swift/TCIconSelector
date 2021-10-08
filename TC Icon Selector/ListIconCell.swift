@@ -28,12 +28,12 @@ class ListIconCell: UICollectionViewCell {
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 14
         image.contentMode = .scaleAspectFill
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = .rounded(ofSize: 20, weight: .medium)
         contentView.addSubview(image)
         contentView.addSubview(label)
         
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             label.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
@@ -43,7 +43,20 @@ class ListIconCell: UICollectionViewCell {
             image.heightAnchor.constraint(equalToConstant: 60),
             image.widthAnchor.constraint(equalToConstant: 60)
         ])
-        
     }
     
+}
+
+extension UIFont {
+    class func rounded(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {
+        let systemFont = UIFont.systemFont(ofSize: size, weight: weight)
+        let font: UIFont
+        
+        if let descriptor = systemFont.fontDescriptor.withDesign(.rounded) {
+            font = UIFont(descriptor: descriptor, size: size)
+        } else {
+            font = systemFont
+        }
+        return font
+    }
 }

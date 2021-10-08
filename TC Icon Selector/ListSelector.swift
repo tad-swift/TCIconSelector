@@ -97,7 +97,7 @@ extension ListSelector {
         
         dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: IconHeaderView.reuseIdentifier, for: indexPath) as? IconHeaderView
-            supplementaryView?.label.text = "Alternate Icons"
+            supplementaryView?.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
     }
