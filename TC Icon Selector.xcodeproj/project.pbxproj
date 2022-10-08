@@ -12,6 +12,7 @@
 		4568B81625BB55F4002837AE /* ListIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568B81525BB55F4002837AE /* ListIconCell.swift */; };
 		4568B81A25BB5653002837AE /* IconHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568B81925BB5653002837AE /* IconHeaderView.swift */; };
 		4568B84225BB5F9C002837AE /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568B84125BB5F9C002837AE /* Icon.swift */; };
+		45CF47F928F12CE30056EC75 /* ListSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CF47F828F12CE30056EC75 /* ListSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		4568B81525BB55F4002837AE /* ListIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconCell.swift; sourceTree = "<group>"; };
 		4568B81925BB5653002837AE /* IconHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconHeaderView.swift; sourceTree = "<group>"; };
 		4568B84125BB5F9C002837AE /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		45CF47F828F12CE30056EC75 /* ListSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				4568B80725BB549D002837AE /* TC_Icon_Selector.h */,
 				4568B80825BB549D002837AE /* Info.plist */,
 				4568B81025BB5505002837AE /* ListSelector.swift */,
+				45CF47F828F12CE30056EC75 /* ListSelectorView.swift */,
 				4568B84125BB5F9C002837AE /* Icon.swift */,
 				4568B81525BB55F4002837AE /* ListIconCell.swift */,
 				4568B81925BB5653002837AE /* IconHeaderView.swift */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45CF47F928F12CE30056EC75 /* ListSelectorView.swift in Sources */,
 				4568B81625BB55F4002837AE /* ListIconCell.swift in Sources */,
 				4568B81A25BB5653002837AE /* IconHeaderView.swift in Sources */,
 				4568B84225BB5F9C002837AE /* Icon.swift in Sources */,
